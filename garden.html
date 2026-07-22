@@ -1,0 +1,771 @@
+```html
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>باغ خاطرات ما 🌿</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            font-family: Tahoma, Arial, sans-serif;
+
+            background: linear-gradient(
+                180deg,
+                #ffdce8 0%,
+                #f5b4ca 50%,
+                #c97899 100%
+            );
+
+            color: #6d3049;
+        }
+
+
+        .garden-page {
+            min-height: 100vh;
+
+            padding: 30px 15px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .garden-header {
+            text-align: center;
+
+            max-width: 650px;
+
+            margin: 0 auto 25px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .garden-header h1 {
+            font-size: clamp(28px, 7vw, 48px);
+
+            color: #7c294d;
+
+            margin-bottom: 12px;
+        }
+
+
+        .garden-header p {
+            font-size: 15px;
+
+            line-height: 2;
+        }
+
+
+        .garden {
+            width: min(100%, 900px);
+
+            height: 600px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 40px;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(255,255,255,0.5),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    180deg,
+                    #f8c9d8,
+                    #d88ca8
+                );
+
+            box-shadow:
+
+                0 20px 50px
+                rgba(100, 30, 65, 0.25),
+
+                inset 0 0 80px
+                rgba(100, 30, 65, 0.15);
+        }
+
+
+        .moon {
+            position: absolute;
+
+            top: 30px;
+
+            right: 45px;
+
+            font-size: 55px;
+
+            filter:
+                drop-shadow(
+                    0 0 15px
+                    rgba(255,255,220,0.9)
+                );
+        }
+
+
+        .garden-path {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: -100px;
+
+            transform: translateX(-50%);
+
+            width: 230px;
+
+            height: 550px;
+
+            background:
+                rgba(255, 239, 225, 0.75);
+
+            border-radius:
+                50% 50% 0 0;
+        }
+
+
+        .tree {
+            position: absolute;
+
+            bottom: 15px;
+
+            font-size: 120px;
+
+            z-index: 3;
+        }
+
+
+        .tree-left {
+            left: 10px;
+        }
+
+
+        .tree-right {
+            right: 10px;
+        }
+
+
+        .memory-item {
+            position: absolute;
+
+            z-index: 10;
+
+            width: 130px;
+
+            height: 130px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.5);
+
+            backdrop-filter:
+                blur(8px);
+
+            cursor: pointer;
+
+            font-size: 50px;
+
+            font-family: inherit;
+
+            color: #6d3049;
+
+            box-shadow:
+                0 10px 30px
+                rgba(80,20,50,0.2);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+
+        .memory-item span {
+            display: block;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+
+        .memory-item:hover {
+            transform:
+                scale(1.1)
+                translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.75);
+        }
+
+
+        .balloons {
+            top: 80px;
+
+            left: 12%;
+
+            animation:
+                float 3s
+                ease-in-out
+                infinite;
+        }
+
+
+        .puzzle {
+            top: 250px;
+
+            right: 12%;
+
+            animation:
+                float 3.5s
+                ease-in-out
+                infinite;
+        }
+
+
+        .letter {
+            bottom: 40px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            animation:
+                float 4s
+                ease-in-out
+                infinite;
+        }
+
+
+        .letter:hover {
+            transform:
+                translateX(-50%)
+                scale(1.1)
+                translateY(-8px);
+        }
+
+
+        .flower {
+            position: absolute;
+
+            z-index: 4;
+
+            font-size: 35px;
+
+            animation:
+                sway 3s
+                ease-in-out
+                infinite;
+        }
+
+
+        .flower1 {
+            bottom: 40px;
+
+            left: 25%;
+        }
+
+
+        .flower2 {
+            bottom: 100px;
+
+            left: 35%;
+        }
+
+
+        .flower3 {
+            bottom: 60px;
+
+            right: 25%;
+        }
+
+
+        .flower4 {
+            bottom: 130px;
+
+            right: 35%;
+        }
+
+
+        .modal {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 100;
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            background:
+                rgba(70,20,45,0.5);
+
+            backdrop-filter:
+                blur(8px);
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+
+        .modal-box {
+            position: relative;
+
+            width: min(90%, 500px);
+
+            padding: 40px 25px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fff5f8,
+                    #ffe0ea
+                );
+
+            box-shadow:
+                0 20px 60px
+                rgba(70,20,45,0.3);
+        }
+
+
+        .close {
+            position: absolute;
+
+            top: 10px;
+
+            left: 15px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 30px;
+
+            color: #9b4568;
+
+            cursor: pointer;
+        }
+
+
+        #modalContent {
+            line-height: 2;
+        }
+
+
+        @keyframes float {
+
+            0%, 100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-12px);
+            }
+        }
+
+
+        @keyframes sway {
+
+            0%, 100% {
+                transform:
+                    rotate(-5deg);
+            }
+
+            50% {
+                transform:
+                    rotate(5deg);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .garden-page {
+                padding:
+                    20px 10px;
+            }
+
+
+            .garden {
+                height: 550px;
+
+                border-radius:
+                    25px;
+            }
+
+
+            .tree {
+                font-size: 70px;
+            }
+
+
+            .memory-item {
+                width: 100px;
+
+                height: 100px;
+
+                font-size: 38px;
+            }
+
+
+            .memory-item span {
+                font-size: 10px;
+            }
+
+
+            .balloons {
+                left: 3%;
+            }
+
+
+            .puzzle {
+                right: 3%;
+            }
+
+
+            .garden-path {
+                width: 170px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="garden-page">
+
+
+        <header class="garden-header">
+
+            <h1>
+                🌿 باغ خاطرات ما 🌿
+            </h1>
+
+            <p>
+                اینجا یه گوشه کوچیک از دنیای ماست...
+                آروم آروم بگرد و ببین چی برات آماده کردم. 🤍
+            </p>
+
+        </header>
+
+
+        <section class="garden">
+
+
+            <div class="moon">
+                🌙
+            </div>
+
+
+            <div class="garden-path"></div>
+
+
+            <div class="tree tree-left">
+                🌳
+            </div>
+
+
+            <div class="tree tree-right">
+                🌳
+            </div>
+
+
+            <div class="flower flower1">
+                🌷
+            </div>
+
+
+            <div class="flower flower2">
+                🌸
+            </div>
+
+
+            <div class="flower flower3">
+                🌹
+            </div>
+
+
+            <div class="flower flower4">
+                🌷
+            </div>
+
+
+            <button
+                class="memory-item balloons"
+                id="balloonMemory">
+
+                🎈
+
+                <span>
+                    خاطره‌ها
+                </span>
+
+            </button>
+
+
+            <button
+                class="memory-item puzzle"
+                id="puzzleMemory">
+
+                🧩
+
+                <span>
+                    یه چیز کوچیک برای تو
+                </span>
+
+            </button>
+
+
+            <button
+                class="memory-item letter"
+                id="letterMemory">
+
+                💌
+
+                <span>
+                    نامه
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+
+    <div
+        class="modal"
+        id="memoryModal">
+
+
+        <div class="modal-box">
+
+
+            <button
+                class="close"
+                id="closeMemory">
+
+                ×
+
+            </button>
+
+
+            <div
+                id="modalContent">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script>
+
+
+        const modal =
+            document.getElementById(
+                "memoryModal"
+            );
+
+
+        const modalContent =
+            document.getElementById(
+                "modalContent"
+            );
+
+
+        const closeButton =
+            document.getElementById(
+                "closeMemory"
+            );
+
+
+        document
+            .getElementById(
+                "balloonMemory"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    modalContent.innerHTML = `
+
+                        <div
+                            style="
+                            font-size:55px;
+                            "
+                        >
+                            🎈🎈🎈
+                        </div>
+
+
+                        <h2>
+                            خاطره‌های ما
+                        </h2>
+
+
+                        <p>
+                            بعضی خاطره‌ها مثل بادکنکن...
+                            آروم آروم میرن بالا،
+                            ولی هیچ‌وقت از یاد آدم نمی‌رن. 🤍
+                        </p>
+
+                    `;
+
+
+                    modal.classList.add(
+                        "active"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "puzzleMemory"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    modalContent.innerHTML = `
+
+                        <div
+                            style="
+                            font-size:55px;
+                            "
+                        >
+                            🧩
+                        </div>
+
+
+                        <h2>
+                            یه چیز کوچیک برای تو
+                        </h2>
+
+
+                        <p>
+                            اینجا قراره یه پازل کوچیک داشته باشیم...
+                            فعلاً این قسمت رو برای بعد نگه می‌داریم. 😌💗
+                        </p>
+
+                    `;
+
+
+                    modal.classList.add(
+                        "active"
+                    );
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "letterMemory"
+            )
+            .addEventListener(
+                "click",
+                function () {
+
+
+                    window.location.href =
+                        "page/letter.html";
+
+                }
+            );
+
+
+        closeButton
+            .addEventListener(
+                "click",
+                function () {
+
+                    modal.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+
+        modal
+            .addEventListener(
+                "click",
+                function (event) {
+
+
+                    if (
+                        event.target === modal
+                    ) {
+
+                        modal.classList.remove(
+                            "active"
+                        );
+
+                    }
+
+                }
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>
+```
