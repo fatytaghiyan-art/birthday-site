@@ -1,0 +1,390 @@
+/* ------------------------------
+   تنظیمات اولیه
+------------------------------ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Vazirmatn", sans-serif;
+    overflow: hidden;
+}
+
+
+/* ------------------------------
+   صفحه اصلی
+------------------------------ */
+
+.welcome-page {
+    width: 100%;
+    height: 100vh;
+    min-height: 100svh;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3a183d 0%,
+            #1b1029 45%,
+            #0d0716 100%
+        );
+}
+
+
+/* ------------------------------
+   ستاره‌های آسمان
+------------------------------ */
+
+.stars {
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+
+/* ظاهر کلی ستاره‌ها */
+
+.star {
+    position: absolute;
+
+    display: block;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 12px #ffd6f4,
+        0 0 20px #ff8fc7;
+
+    animation:
+        twinkle 2s ease-in-out infinite alternate;
+}
+
+
+/* اندازه و جای ستاره‌ها */
+
+.star-1 {
+    top: 10%;
+    left: 12%;
+    font-size: 24px;
+}
+
+.star-2 {
+    top: 20%;
+    left: 28%;
+    font-size: 14px;
+    animation-delay: 0.5s;
+}
+
+.star-3 {
+    top: 8%;
+    right: 20%;
+    font-size: 30px;
+    animation-delay: 1s;
+}
+
+.star-4 {
+    top: 32%;
+    right: 10%;
+    font-size: 16px;
+    animation-delay: 1.5s;
+}
+
+.star-5 {
+    top: 45%;
+    left: 8%;
+    font-size: 28px;
+    animation-delay: 0.7s;
+}
+
+.star-6 {
+    top: 55%;
+    right: 25%;
+    font-size: 15px;
+    animation-delay: 1.2s;
+}
+
+.star-7 {
+    top: 70%;
+    left: 18%;
+    font-size: 22px;
+    animation-delay: 0.3s;
+}
+
+.star-8 {
+    top: 80%;
+    right: 12%;
+    font-size: 17px;
+    animation-delay: 1.8s;
+}
+
+.star-9 {
+    top: 15%;
+    left: 50%;
+    font-size: 18px;
+    animation-delay: 0.9s;
+}
+
+.star-10 {
+    top: 75%;
+    left: 45%;
+    font-size: 13px;
+    animation-delay: 1.4s;
+}
+
+.star-11 {
+    top: 25%;
+    left: 75%;
+    font-size: 25px;
+    animation-delay: 0.4s;
+}
+
+.star-12 {
+    top: 60%;
+    left: 80%;
+    font-size: 14px;
+    animation-delay: 1.7s;
+}
+
+.star-13 {
+    top: 88%;
+    left: 65%;
+    font-size: 26px;
+    animation-delay: 0.8s;
+}
+
+.star-14 {
+    top: 40%;
+    left: 35%;
+    font-size: 12px;
+    animation-delay: 1.1s;
+}
+
+.star-15 {
+    top: 90%;
+    left: 5%;
+    font-size: 20px;
+    animation-delay: 0.6s;
+}
+
+
+/* انیمیشن چشمک زدن */
+
+@keyframes twinkle {
+
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.2) rotate(15deg);
+    }
+
+}
+
+/* ------------------------------
+   محتوای وسط
+------------------------------ */
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    color: white;
+
+    animation: fadeIn 1.5s ease forwards;
+}
+
+
+/* ------------------------------
+   قلب کوچک
+------------------------------ */
+
+.small-heart {
+    font-size: 70px;
+
+    color: #ff7eb6;
+
+    margin-bottom: 20px;
+
+    animation: heartbeat 2s infinite;
+}
+
+
+/* ------------------------------
+   عنوان
+------------------------------ */
+
+.welcome-content h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+
+    font-weight: 600;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 10px rgba(255, 126, 182, 0.5);
+}
+
+
+/* ------------------------------
+   متن
+------------------------------ */
+
+.welcome-content p {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+
+    color: #ffd8eb;
+
+    margin-bottom: 35px;
+}
+
+
+/* ------------------------------
+   دکمه
+------------------------------ */
+
+.start-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 180px;
+
+    padding: 14px 30px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6fae,
+            #ff4f81
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    box-shadow:
+        0 10px 30px rgba(255, 79, 129, 0.35);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* حالت hover */
+
+.start-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(255, 79, 129, 0.5);
+}
+
+
+/* حالت کلیک */
+
+.start-button:active {
+    transform: scale(0.96);
+}
+
+
+/* ------------------------------
+   انیمیشن‌ها
+------------------------------ */
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes moveStars {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-80px);
+    }
+}
+
+
+/* ------------------------------
+   موبایل
+------------------------------ */
+
+@media (max-width: 600px) {
+
+    .welcome-content {
+        width: 90%;
+    }
+
+    .small-heart {
+        font-size: 55px;
+    }
+
+    .start-button {
+        width: 80%;
+        max-width: 280px;
+    }
+
+}

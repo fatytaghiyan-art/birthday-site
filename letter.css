@@ -1,0 +1,956 @@
+/* ========================================
+   تنظیمات اصلی
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+}
+
+body {
+    font-family: "Vazirmatn", sans-serif;
+}
+
+
+/* ========================================
+   صفحه اصلی نامه
+======================================== */
+
+.letter-page {
+
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff1f7 0%,
+            #fbd3e3 30%,
+            #e993b2 65%,
+            #bd527c 100%
+        );
+}
+
+
+/* ========================================
+   صحنه پاکت
+======================================== */
+
+.letter-scene {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+}
+
+
+/* ========================================
+   خود پاکت
+======================================== */
+
+.envelope-wrapper {
+
+    position: relative;
+
+    width: min(
+        520px,
+        82vw
+    );
+
+    height: min(
+        350px,
+        55vh
+    );
+
+    perspective:
+        1200px;
+}
+
+
+.envelope {
+
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+}
+
+
+/* ========================================
+   پشت پاکت
+======================================== */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5abc6,
+            #d86c95
+        );
+
+    border-radius:
+        16px;
+
+    box-shadow:
+
+        0 25px 60px
+        rgba(
+            90,
+            25,
+            55,
+            0.3
+        );
+}
+
+
+/* ========================================
+   کاغذ نامه
+======================================== */
+
+.letter-paper {
+
+    position: absolute;
+
+    width: 94%;
+    height: 92%;
+
+    left: 3%;
+    top: 4%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffefa,
+            #fff7fb
+        );
+
+    border-radius:
+        14px;
+
+    z-index: 2;
+
+    /*
+    قبل از باز شدن
+    نامه کاملاً مخفی است
+    */
+
+    visibility:
+        hidden;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(0)
+        scale(0.94);
+
+    box-shadow:
+
+        0 0 18px
+        rgba(
+            255,
+            100,
+            160,
+            0.45
+        ),
+
+        0 0 45px
+        rgba(
+            255,
+            100,
+            160,
+            0.3
+        ),
+
+        0 25px 50px
+        rgba(
+            100,
+            30,
+            60,
+            0.25
+        );
+}
+
+
+/* ========================================
+   باز شدن نامه
+======================================== */
+
+.envelope.open
+.letter-paper {
+
+    visibility:
+        visible;
+
+    opacity:
+        1;
+
+    z-index:
+        8;
+
+    animation:
+        letterComeOut
+        1.8s
+        cubic-bezier(
+            0.22,
+            1,
+            0.36,
+            1
+        )
+        forwards;
+}
+
+
+/* ========================================
+   انیمیشن بیرون آمدن نامه
+======================================== */
+
+@keyframes letterComeOut {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(0.94);
+
+    }
+
+    35% {
+
+        transform:
+            translateY(-100px)
+            scale(0.97);
+
+    }
+
+    65% {
+
+        transform:
+            translateY(-210px)
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-175px)
+            scale(1);
+
+    }
+}
+
+
+/* ========================================
+   محتوای داخل نامه
+======================================== */
+
+.letter-content {
+
+    width: 100%;
+    height: 100%;
+
+    padding:
+
+        clamp(
+            25px,
+            4vw,
+            45px
+        );
+
+    display: flex;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    text-align:
+        center;
+
+    /*
+    فقط خود نامه اسکرول می‌شود
+    */
+
+    overflow-y:
+        auto;
+
+    overflow-x:
+        hidden;
+
+    opacity:
+        0;
+
+    transition:
+        opacity
+        0.7s
+        ease;
+
+    /*
+    اسکرول بار ظریف
+    */
+
+    scrollbar-width:
+        thin;
+
+    scrollbar-color:
+
+        #efa0bb
+        transparent;
+}
+
+
+/* ========================================
+   ظاهر شدن متن بعد از بیرون آمدن نامه
+======================================== */
+
+.envelope.open
+.letter-content {
+
+    opacity:
+        1;
+
+    transition-delay:
+        1.4s;
+}
+
+
+/* ========================================
+   عنوان نامه
+======================================== */
+
+.letter-content h1 {
+
+    margin:
+        0 0 20px;
+
+    color:
+        #d94f7c;
+
+    font-size:
+
+        clamp(
+            1.4rem,
+            3vw,
+            2rem
+        );
+
+    font-weight:
+        700;
+}
+
+
+/* ========================================
+   متن نامه
+======================================== */
+
+.letter-text {
+
+    width: 100%;
+
+    max-width:
+        650px;
+
+    color:
+        #654452;
+
+    font-size:
+
+        clamp(
+            0.9rem,
+            2vw,
+            1.15rem
+        );
+
+    line-height:
+        2;
+
+    font-weight:
+        400;
+}
+
+
+/* ========================================
+   فاصله پاراگراف‌ها
+======================================== */
+
+.letter-text p {
+
+    margin:
+        0 0 18px;
+}
+
+
+/* ========================================
+   جلوی پاکت
+======================================== */
+
+.envelope-front {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    z-index:
+        4;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #f3a5c0,
+            #d96d96
+        );
+
+    clip-path:
+
+        polygon(
+            0 40%,
+            50% 75%,
+            100% 40%,
+            100% 100%,
+            0 100%
+        );
+
+    border-radius:
+
+        0 0 16px 16px;
+}
+
+
+/* ========================================
+   در پاکت
+======================================== */
+
+.envelope-flap {
+
+    position:
+        absolute;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    width:
+        100%;
+
+    height:
+        58%;
+
+    z-index:
+        5;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #f8b4ca,
+            #e986aa
+        );
+
+    clip-path:
+
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin:
+
+        top center;
+
+    transition:
+
+        transform
+        0.8s
+        ease;
+}
+
+
+/* ========================================
+   باز شدن در پاکت
+======================================== */
+
+.envelope.open
+.envelope-flap {
+
+    transform:
+        rotateX(
+            180deg
+        );
+
+    z-index:
+        1;
+}
+
+
+/* ========================================
+   قلب روی پاکت
+======================================== */
+
+.heart-seal {
+
+    position:
+        absolute;
+
+    top:
+        43%;
+
+    left:
+        50%;
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index:
+        10;
+
+    width:
+        64px;
+
+    height:
+        64px;
+
+    border:
+        none;
+
+    border-radius:
+        50%;
+
+    background:
+        #e6395b;
+
+    color:
+        white;
+
+    font-size:
+        28px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+
+        0 8px 25px
+        rgba(
+            230,
+            57,
+            91,
+            0.45
+        );
+
+    transition:
+
+        transform
+        0.3s
+        ease;
+}
+
+
+.heart-seal:hover {
+
+    transform:
+
+        translate(
+            -50%,
+            -50%
+        )
+        scale(
+            1.12
+        );
+}
+
+
+/* ========================================
+   محو شدن قلب بعد از کلیک
+======================================== */
+
+.envelope.open
+.heart-seal {
+
+    opacity:
+        0;
+
+    pointer-events:
+        none;
+}
+
+
+/* ========================================
+   قلب‌های شناور
+======================================== */
+
+.floating-hearts {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    overflow:
+        hidden;
+
+    pointer-events:
+        none;
+
+    z-index:
+        15;
+}
+
+
+.floating-hearts span {
+
+    position:
+        absolute;
+
+    bottom:
+        -50px;
+
+    color:
+
+        rgba(
+            255,
+            255,
+            255,
+            0.75
+        );
+
+    font-size:
+        25px;
+
+    opacity:
+        0;
+
+    animation:
+
+        heartFloat
+        9s
+        linear
+        infinite;
+}
+
+
+/* موقعیت قلب‌ها */
+
+.floating-hearts span:nth-child(1) {
+    left: 8%;
+    animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 18%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 30%;
+    animation-delay: 4s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 42%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 55%;
+    animation-delay: 3s;
+}
+
+.floating-hearts span:nth-child(6) {
+    left: 65%;
+    animation-delay: 5s;
+}
+
+.floating-hearts span:nth-child(7) {
+    left: 75%;
+    animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(8) {
+    left: 84%;
+    animation-delay: 4s;
+}
+
+.floating-hearts span:nth-child(9) {
+    left: 92%;
+    animation-delay: 1s;
+}
+
+.floating-hearts span:nth-child(10) {
+    left: 50%;
+    animation-delay: 6s;
+}
+
+
+/* ========================================
+   حرکت قلب‌ها
+======================================== */
+
+@keyframes heartFloat {
+
+    0% {
+
+        transform:
+
+            translateY(0)
+            rotate(0deg)
+            scale(0.7);
+
+        opacity:
+            0;
+
+    }
+
+    15% {
+
+        opacity:
+            0.8;
+
+    }
+
+    50% {
+
+        transform:
+
+            translateY(-50vh)
+            rotate(15deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+
+            translateY(-110vh)
+            rotate(-15deg)
+            scale(0.7);
+
+        opacity:
+            0;
+
+    }
+}
+
+
+/* ========================================
+   دکمه ادامه
+======================================== */
+
+.continue-button {
+
+    display:
+        inline-flex;
+
+    justify-content:
+        center;
+
+    align-items:
+        center;
+
+    margin-top:
+        10px;
+
+    margin-bottom:
+        10px;
+
+    padding:
+
+        10px 24px;
+
+    border-radius:
+        30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #f48fb1,
+            #d94f7c
+        );
+
+    color:
+        white;
+
+    text-decoration:
+        none;
+
+    font-size:
+        0.85rem;
+
+    box-shadow:
+
+        0 6px 15px
+        rgba(
+            217,
+            79,
+            124,
+            0.3
+        );
+
+    transition:
+
+        transform
+        0.3s
+        ease;
+}
+
+
+.continue-button:hover {
+
+    transform:
+
+        translateY(-2px)
+        scale(1.03);
+}
+
+
+/* ========================================
+   موبایل
+======================================== */
+
+@media (
+    max-width: 600px
+) {
+
+    .envelope-wrapper {
+
+        width:
+            88vw;
+
+        height:
+            280px;
+    }
+
+
+    /* انیمیشن مخصوص موبایل */
+
+    @keyframes letterComeOut {
+
+        0% {
+
+            transform:
+
+                translateY(0)
+                scale(0.9);
+
+        }
+
+        35% {
+
+            transform:
+
+                translateY(-80px)
+                scale(0.94);
+
+        }
+
+        65% {
+
+            transform:
+
+                translateY(-180px)
+                scale(0.98);
+
+        }
+
+        100% {
+
+            transform:
+
+                translateY(-150px)
+                scale(0.98);
+
+        }
+    }
+
+
+    .letter-content {
+
+        padding:
+            20px;
+    }
+
+
+    .letter-content h1 {
+
+        font-size:
+            1.3rem;
+
+        margin-bottom:
+            15px;
+    }
+
+
+    .letter-text {
+
+        font-size:
+            0.85rem;
+
+        line-height:
+            1.85;
+    }
+
+
+    .letter-text p {
+
+        margin-bottom:
+            15px;
+    }
+
+
+    .heart-seal {
+
+        width:
+            56px;
+
+        height:
+            56px;
+
+        font-size:
+            24px;
+    }
+
+}
